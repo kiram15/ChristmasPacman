@@ -1,5 +1,6 @@
 import Pacman as Grinch
 import Ghost as Santa
+import copy
 
 class dot(object):
     def __init__(self, x, y):
@@ -11,30 +12,33 @@ class dot(object):
 class maze(object):
     def __init__(self, ogMaze):
         self.maze = copy.deepcopy(ogMaze)
-        self.ghostStart = (1,5) #santa
-        self.pacmanStart = (5,1) #grinch
+        self.ghost = (0,0)
+        self.pacman = (4,5)
         self.dotList = self.createDotList(ogMaze)
-        self.height = 7
-        self.length = 7
+        self.height = 5
+        self.length = 4
         self.remainingDots = 16
         return
 
+    #even if the ghost moves over the dot, it needs to stay there
+    
     def createDotList(self, maze):
+        d = dot()
         allDots = []
         for x, a in enumerate(maze):
             for y, b in enumerate(maze[x]):
                 if b is '.':
-                    allDots.append(Dot(x, y, False))
+                    allDots.append(dot(x, y, False))
                 if b is ' ':
-                    allDots.append(Dot(x, y, True))
+                    allDots.append(dot(x, y, True))
         return allDots
 
-
     def makeMove(self, past, x, y):
+        m = maze()
         if isinstance(past, Santa.Ghost):
-            ghostMove(self, past, x, y)
+            m.ghostMove(self, past, x, y)
         if isinstance(past, Grinch.Pacman):
-            pacmanMove(self, past, x, y)
+            m.pacmanMove(self, past, x, y)
 
     def ghostMove(self, past, futureX, futureY):
         pastX = past.location[0]
@@ -59,7 +63,7 @@ class maze(object):
         pastY = past.location[1]
         self.maze[pastX][pastY] = 'G'
         self.maze[pastX][pastY] = ' '
-        past.location = x, y
+        past.location = futureX, futureY
         #if he ate a dot
         if self.maze[pastX][pastY] is '.':
             self.remainingDots -= self.remainingDots
