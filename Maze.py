@@ -11,8 +11,8 @@ class dot(object):
 class maze(object):
     def __init__(self, ogMaze):
         self.maze = copy.deepcopy(ogMaze)
-        self.ghost = (1,5) #santa
-        self.pacman = (5,1) #grinch
+        self.ghostStart = (1,5) #santa
+        self.pacmanStart = (5,1) #grinch
         self.dotList = self.createDotList(ogMaze)
         self.height = 7
         self.length = 7
