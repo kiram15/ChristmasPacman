@@ -41,28 +41,28 @@ class maze(object):
         pastY = past.location[1]
         #if the ghost is going over a dot, it's stored so that the
         #dot can be restored after the ghost moves out of that spot
-        self.maze[x][y] = 'S'
+        self.maze[pastX][pastY] = 'S'
         if past.coveringDot:
             self.maze[pastX][pastY] = '.'
             past.onDot = False
         elif self.maze[futureX][futureY] is '.':
             self.maze[pastX][pastY] = ' '
             past.coveringDot = True
-            past.location = x, y
+            past.location = pastX, pastY
         else:
             self.board[pastX][pastY] = ' '
-        past.location = x, y
+        past.location = pastX, pastY
 
 
     def pacmanMove(self, past, futureX, futureY):
         pastX = past.location[0]
         pastY = past.location[1]
-        self.maze[x][y] = 'G'
+        self.maze[pastX][pastY] = 'G'
         self.maze[pastX][pastY] = ' '
         past.location = x, y
         #if he ate a dot
-        if self.maze[x][y] is '.':
+        if self.maze[pastX][pastY] is '.':
             self.remainingDots -= self.remainingDots
             for dot in self.dotList:
-                if dot.location[0] == x and dot.location[1] == y:
+                if dot.location[0] == pastX and dot.location[1] == pastY:
                     self.dotList.remove(dot)
