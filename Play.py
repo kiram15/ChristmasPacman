@@ -93,14 +93,10 @@ if __name__ == "__main__":
              ['X', 'S', '.', '.', '.', ' ', 'X'],
              ['X', 'X', 'X', 'X', 'X', 'X', 'X']]
 
-    myMaze = Maze(board)
+    myMaze = Maze.Maze(board)
+    myGrinch = Grinch.Pacman(board)
+    mySanta = Santa.Ghost(board)
+    runHelperAStar(Santa.Ghost.getLocation(mySanta), Grinch.Pacman.getLocation(myGrinch), 1)
 
-
-
-    #create an instance of board
-    #create an instance of pacman(using board)
-    #create an instance of ghost(using board)
     #alive = False
     #has a ghost caught pacman
-
-
