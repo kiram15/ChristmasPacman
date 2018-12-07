@@ -1,9 +1,9 @@
 #santa
 class Ghost:
-    def __init__(self, maze):
+    def __init__(self, Maze):
         self.location = (1,5)
         self.coveringDot = False
-        self.maze = maze()
+        self.maze = Maze()
 
     def actions(self):
         walls = [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6),
