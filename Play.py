@@ -1,5 +1,6 @@
-import Ghost as Santa
-#import Pacman as Grinch
+from ChristmasPacman import Ghost as Santa
+from ChristmasPacman import Pacman as Grinch
+from ChristmasPacman import Maze
 import time
 
 class Node:
@@ -79,11 +80,7 @@ def h3(state, goal):
     return manhattanDistance(state, goal)
 
 def manhattanDistance(state, goal):
-    #TO DO
-    #stateX, stateY = findNum_8p(state, 0)
-    #, goalY = findNum_8p(goal, 0)
-    #return abs(stateX - goalX) + abs(stateY - goalY)
-    return
+    return abs(state[0] - goal[0]) + abs(state[1] - goal[1])
 
 
 if __name__ == "__main__":
@@ -95,6 +92,9 @@ if __name__ == "__main__":
              ['X', '.', 'X', 'X', 'X', '.', 'X'],
              ['X', 'S', '.', '.', '.', ' ', 'X'],
              ['X', 'X', 'X', 'X', 'X', 'X', 'X']]
+
+    myMaze = Maze(board)
+
 
 
     #create an instance of board
