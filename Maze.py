@@ -1,5 +1,5 @@
-import Pacman as Grinch
-import Ghost as Santa
+from FP import Pacman as Grinch
+from FP import Ghost as Santa
 import copy
 
 
@@ -14,13 +14,12 @@ class dot(object):
 class maze(object):
     def __init__(self, ogMaze):
         self.maze = copy.deepcopy(ogMaze)
-        self.ghost = (1, 5)
-        self.pacman = (5, 1)
+        self.ghost = (1,5)
+        self.pacman = (5,1)
         self.dotList = self.createDotList(ogMaze)
         self.height = 7
         self.length = 7
         self.remainingDots = 11
-        return
 
     # even if the ghost moves over the dot, it needs to stay there
 
