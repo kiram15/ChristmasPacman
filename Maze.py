@@ -14,12 +14,12 @@ class dot(object):
 class maze(object):
     def __init__(self, ogMaze):
         self.maze = copy.deepcopy(ogMaze)
-        self.ghost = (0, 0)
-        self.pacman = (4, 5)
+        self.ghost = (1, 5)
+        self.pacman = (5, 1)
         self.dotList = self.createDotList(ogMaze)
-        self.height = 5
-        self.length = 4
-        self.remainingDots = 16
+        self.height = 7
+        self.length = 7
+        self.remainingDots = 11
         return
 
     # even if the ghost moves over the dot, it needs to stay there
