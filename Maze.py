@@ -1,9 +1,9 @@
-from FP import Pacman as Grinch
-from FP import Ghost as Santa
+from ChristmasPacman import Pacman as Grinch
+from ChristmasPacman import Ghost as Santa
 import copy
 
 
-class dot(object):
+class Dot(object):
     def __init__(self, x, y):
         self.location = x, y
 
@@ -11,7 +11,7 @@ class dot(object):
         return self.location
 
 
-class maze(object):
+class Maze(object):
     def __init__(self, ogMaze):
         self.maze = copy.deepcopy(ogMaze)
         self.ghost = (1,5)
@@ -22,22 +22,21 @@ class maze(object):
         self.remainingDots = 11
 
     # even if the ghost moves over the dot, it needs to stay there
-
     def createDotList(self, maze):
         allDots = []
         for x, a in enumerate(maze):
             for y, b in enumerate(maze[x]):
                 if b is '.':
-                    allDots.append(dot(x, y))
+                    allDots.append(Dot(x, y))
                 if b is ' ':
-                    allDots.append(dot(x, y))
+                    allDots.append(Dot(x, y))
         return allDots
 
     def makeMove(self, past, x, y):
         if isinstance(past, Santa.Ghost):
-            maze.ghostMove(self, past, x, y)
+            Maze.ghostMove(self, past, x, y)
         if isinstance(past, Grinch.Pacman):
-            maze.pacmanMove(self, past, x, y)
+            Maze.pacmanMove(self, past, x, y)
 
     def ghostMove(self, past, futureX, futureY):
         pastX = past.location[0]
