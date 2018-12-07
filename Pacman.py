@@ -1,8 +1,8 @@
 #grinch
 class Pacman:
-    def __init__(self, maze):
+    def __init__(self, Maze):
         self.location = (5,1)
-        self.maze = maze()
+        self.maze = Maze()
 
     def actions(self):
         walls = [(0,0),(0,1),(0,2),(0,3),(0,4),(0,5),(0,6),
