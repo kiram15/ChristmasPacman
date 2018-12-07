@@ -1,3 +1,4 @@
+#santa
 class Ghost:
     def __init__(self, maze):
         self.location = (1,5)
@@ -41,36 +42,10 @@ class Ghost:
         self.maze.makeMove(self, newLocation[0], newLocation[1])
         self.location = newLocation
 
-    def takeShortest(self): #calls actions, testAction, takeAction
-        possibleActions = Ghost.actions(self)
-        shortestDistance = 100
-        bestAction = ""
-        for a in possibleActions:
-            tempDistance = Ghost.testAction(self, a)
-            if shortestDistance > tempDistance:
-                shortestDistance = tempDistance
-                bestAction = a
-        Ghost.takeAction(self, bestAction)
-
-    def testAction(self, action):
-        tempLocation = self.location
-        if action == "right":
-            newX = tempLocation[0] + 1
-            tempLocation = (newX, tempLocation[1])
-        elif action == "left":
-            newX = tempLocation[0] - 1
-            tempLocation = (newX, tempLocation[1])
-        elif action == "up":
-            newY = tempLocation[1] + 1
-            tempLocation = (tempLocation[0], newY)
-        elif action == "down":
-            newY = tempLocation[1] - 1
-            tempLocation = (tempLocation[0], newY)
-
-        return Ghost.distance(self, tempLocation, Ghost.getPacmanLocation(self))
-
-    def distance(self, l1, l2):
-        return abs(l1[0] - l2[0]) + abs(l1[1] - l2[1])
+    def goalTest(self):
+        if Ghost.getPacmanLocation(self) == self.location:
+            return True
+        return False
 
     def getPacmanLocation(self):
         myMaze = self.maze.maze
@@ -78,5 +53,37 @@ class Ghost:
         for r in range(len(myMaze)):
             for el in range(len(myMaze[0])):
                 if myMaze[r][el] == "G":
-                    pacmanCoordinates = (r,el)
+                    pacmanCoordinates = (r, el)
         return pacmanCoordinates
+
+            # def takeShortest(self): #calls actions, testAction, takeAction
+    #     possibleActions = Ghost.actions(self)
+    #     shortestDistance = 100
+    #     bestAction = ""
+    #     for a in possibleActions:
+    #         tempDistance = Ghost.testAction(self, a)
+    #         if shortestDistance > tempDistance:
+    #             shortestDistance = tempDistance
+    #             bestAction = a
+    #     Ghost.takeAction(self, bestAction)
+    #
+    # def testAction(self, action):
+    #     tempLocation = self.location
+    #     if action == "right":
+    #         newX = tempLocation[0] + 1
+    #         tempLocation = (newX, tempLocation[1])
+    #     elif action == "left":
+    #         newX = tempLocation[0] - 1
+    #         tempLocation = (newX, tempLocation[1])
+    #     elif action == "up":
+    #         newY = tempLocation[1] + 1
+    #         tempLocation = (tempLocation[0], newY)
+    #     elif action == "down":
+    #         newY = tempLocation[1] - 1
+    #         tempLocation = (tempLocation[0], newY)
+    #
+    #     return Ghost.distance(self, tempLocation, Ghost.getPacmanLocation(self))
+    #
+    # def distance(self, l1, l2):
+    #     return abs(l1[0] - l2[0]) + abs(l1[1] - l2[1])
+    #
